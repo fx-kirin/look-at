@@ -2,10 +2,10 @@
 # Copyright (c) 2012, Evgeny V. Generalov <e.generalov@gmail.com>
 # Copyright (c) 2012, Antonio Cuni <anto.cuni@gmail.com>
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # * Redistributions of source code must retain the above copyright notice, this
 #   list of conditions and the following disclaimer.
 # * Redistributions in binary form must reproduce the above copyright
@@ -14,7 +14,7 @@
 # * Neither the name of  nor the names of its
 #   contributors may be used to endorse or promote products derived from this
 #   software without specific prior written permission.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -30,8 +30,11 @@
 # (https://bitbucket.org/antocuni/wmctrl/raw/7033d6bd56cf/wmctrl.py)
 # writen by Antonio Cuni <anto.cuni@gmail.com>
 
+from __future__ import unicode_literals
+
 import os
 import subprocess
+from builtins import str
 
 
 def getoutput(cmdline):
@@ -40,7 +43,7 @@ def getoutput(cmdline):
     retcode = process.poll()
     if retcode:
         raise subprocess.CalledProcessError(retcode, cmdline, output=output)
-    return output
+    return str(output, 'utf8')
 
 
 class WmCtrl(object):

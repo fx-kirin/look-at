@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2012, Evgeny V. Generalov <e.generalov@gmail.com>
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # * Redistributions of source code must retain the above copyright notice, this
 #   list of conditions and the following disclaimer.
 # * Redistributions in binary form must reproduce the above copyright
@@ -14,7 +14,7 @@
 # * Neither the name of  nor the names of its
 #   contributors may be used to endorse or promote products derived from this
 #   software without specific prior written permission.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -27,19 +27,26 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from __future__ import absolute_import
-import anydbm
+
 import os
 import sys
 
-from look_at.wmctrl import CachedWmCtrl
 from look_at.focus import Focus
+from look_at.wmctrl import CachedWmCtrl
+
+try:
+    import anydbm
+except:
+    import dbm as anydbm
 
 
 # Path to the file to holding programm state
 STATE_FILE_PATH = "~/.look-at.db"
 
+
 def _aen_path(path):
     return os.path.abspath(os.path.expanduser(os.path.normpath(path)))
+
 
 def main():
     session = anydbm.open(_aen_path(STATE_FILE_PATH), 'c')
